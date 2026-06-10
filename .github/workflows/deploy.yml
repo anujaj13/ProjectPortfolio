@@ -1,0 +1,111 @@
+name: Build & Deploy to Cloud Run
+
+on:
+  push:
+    branches:
+      - main          # Deploy on every push to main
+  pull_request:
+    branches:
+      - main          # Build & validate PRs (no deploy)
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}       # Your GCP project ID
+  REGION: asia-south1                              # Change to your preferred region
+  SERVICE_NAME: portfolio                          # Cloud Run service name
+  REGISTRY: asia-south1-docker.pkg.dev             # Artifact Registry host (match REGION)
+  IMAGE: asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/portfolio/app
+
+jobs:
+  # ── Job 1: Build & Push Docker image ──────────────────────────────────────
+  build:
+    name: Build & Push Image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write   # Required for Workload Identity Federation
+
+    outputs:
+      image-tag: ${{ steps.meta.outputs.version }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Authenticate to Google Cloud using service account key
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      # Configure Docker to push to Google Artifact Registry
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGISTRY }} --quiet
+
+      # Generate image tags (SHA + latest)
+      - name: Generate image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=sha,prefix=sha-,format=short
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      # Build & push using Docker Buildx (enables layer caching)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ── Job 2: Deploy to Cloud Run (main branch only) ─────────────────────────
+  deploy:
+    name: Deploy to Cloud Run
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE_NAME }}
+          region: ${{ env.REGION }}
+          image: ${{ env.IMAGE }}:latest
+          flags: |
+            --allow-unauthenticated
+            --min-instances=0
+            --max-instances=3
+            --memory=512Mi
+            --cpu=1
+            --concurrency=80
+            --timeout=60s
+            --port=8080
+
+      - name: Show deployed URL
+        run: |
+          echo "✅ Deployed successfully!"
+          echo "🌐 URL: ${{ steps.deploy.outputs.url }}"
