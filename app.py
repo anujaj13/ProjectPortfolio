@@ -18,22 +18,29 @@ st.markdown("""
 /* ── Reset & Base ── */
 html, body, [class*="css"] {
     font-family: 'DM Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .stApp {
     background: #060912;
     color: #E8EAF0;
+    overflow-x: hidden;
 }
 
 /* Hide Streamlit chrome */
 #MainMenu, footer, header { visibility: hidden; }
-.block-container { padding: 0 !important; max-width: 100% !important; }
+.block-container { 
+    padding: 0 !important; 
+    max-width: 100% !important;
+}
 section[data-testid="stSidebar"] { display: none; }
 
 /* ── Hero Section ── */
 .hero-section {
     position: relative;
-    padding: 80px 60px 60px;
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 5vw, 60px) clamp(30px, 6vw, 60px);
     overflow: hidden;
     background: linear-gradient(135deg, #060912 0%, #0D1528 50%, #060912 100%);
     border-bottom: 1px solid rgba(99,102,241,0.2);
@@ -82,7 +89,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 .hero-name {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(44px, 6vw, 82px);
+    font-size: clamp(36px, 6vw, 82px);
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1.0;
@@ -99,7 +106,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 .hero-title {
     font-family: 'Syne', sans-serif;
-    font-size: 20px;
+    font-size: clamp(14px, 4vw, 20px);
     font-weight: 600;
     color: #6366F1;
     letter-spacing: 0.5px;
@@ -107,7 +114,7 @@ section[data-testid="stSidebar"] { display: none; }
 }
 
 .hero-tagline {
-    font-size: 16px;
+    font-size: clamp(14px, 3vw, 16px);
     color: #9CA3C8;
     max-width: 620px;
     line-height: 1.7;
@@ -120,7 +127,7 @@ section[data-testid="stSidebar"] { display: none; }
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 6px;
     padding: 5px 12px;
-    font-size: 11px;
+    font-size: 10px;
     color: #9CA3C8;
     margin: 3px 4px 3px 0;
     font-family: 'Space Mono', monospace;
@@ -128,18 +135,19 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Stats Bar ── */
 .stats-bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 0;
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 16px;
     overflow: hidden;
-    margin: 0 60px 0;
+    margin: 0 clamp(20px, 5vw, 60px) 0;
 }
 
 .stat-item {
     flex: 1;
-    padding: 28px 20px;
+    padding: clamp(16px, 3vw, 28px) clamp(12px, 2vw, 20px);
     text-align: center;
     border-right: 1px solid rgba(255,255,255,0.07);
     transition: background 0.3s;
@@ -150,7 +158,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 .stat-value {
     font-family: 'Syne', sans-serif;
-    font-size: 32px;
+    font-size: clamp(18px, 4vw, 32px);
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1;
@@ -162,7 +170,7 @@ section[data-testid="stSidebar"] { display: none; }
 .stat-value.orange { color: #F7B731; }
 
 .stat-label {
-    font-size: 11px;
+    font-size: clamp(8px, 2vw, 11px);
     color: #6B7280;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -171,7 +179,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Nav ── */
 .nav-container {
-    padding: 20px 60px;
+    padding: clamp(12px, 2vw, 20px) clamp(20px, 5vw, 60px);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -185,7 +193,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Section Headers ── */
 .section-header {
-    padding: 60px 60px 32px;
+    padding: clamp(40px, 6vw, 60px) clamp(20px, 5vw, 60px) clamp(20px, 3vw, 32px);
 }
 
 .section-eyebrow {
@@ -199,7 +207,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 .section-title {
     font-family: 'Syne', sans-serif;
-    font-size: 40px;
+    font-size: clamp(24px, 5vw, 40px);
     font-weight: 800;
     color: #FFFFFF;
     margin: 0;
@@ -212,10 +220,16 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Project Cards ── */
 .projects-grid {
-    padding: 0 60px 60px;
+    padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 60px);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+    gap: clamp(12px, 3vw, 20px);
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project-card {
@@ -241,7 +255,7 @@ section[data-testid="stSidebar"] { display: none; }
 }
 
 .card-header {
-    padding: 28px 28px 0;
+    padding: clamp(16px, 4vw, 28px);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -249,7 +263,7 @@ section[data-testid="stSidebar"] { display: none; }
 }
 
 .card-icon {
-    font-size: 32px;
+    font-size: clamp(24px, 5vw, 32px);
     line-height: 1;
     flex-shrink: 0;
 }
@@ -301,12 +315,12 @@ section[data-testid="stSidebar"] { display: none; }
 }
 
 .card-body {
-    padding: 16px 28px 24px;
+    padding: clamp(12px, 3vw, 24px) clamp(16px, 4vw, 28px);
 }
 
 .card-title {
     font-family: 'Syne', sans-serif;
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 18px);
     font-weight: 700;
     color: #FFFFFF;
     margin: 0 0 4px 0;
@@ -418,7 +432,7 @@ section[data-testid="stSidebar"] { display: none; }
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    padding: 0 28px 24px;
+    padding: 0 clamp(16px, 4vw, 28px) clamp(16px, 4vw, 24px);
 }
 
 .tag {
@@ -433,7 +447,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Skills Section ── */
 .skills-section {
-    padding: 0 60px 60px;
+    padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 60px);
 }
 
 .skills-grid {
@@ -460,11 +474,17 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── About Section ── */
 .about-section {
-    padding: 0 60px 60px;
+    padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 60px);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: clamp(20px, 5vw, 40px);
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        grid-template-columns: 1fr;
+    }
 }
 
 .about-text {
@@ -477,7 +497,7 @@ section[data-testid="stSidebar"] { display: none; }
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 16px;
-    padding: 28px;
+    padding: clamp(16px, 4vw, 28px);
 }
 
 .about-certs h4 {
@@ -512,12 +532,21 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Footer ── */
 .portfolio-footer {
-    padding: 40px 60px;
+    padding: clamp(24px, 4vw, 40px) clamp(20px, 5vw, 60px);
     border-top: 1px solid rgba(255,255,255,0.06);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
     background: rgba(255,255,255,0.01);
+}
+
+@media (min-width: 768px) {
+    .portfolio-footer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .footer-brand {
@@ -540,7 +569,7 @@ section[data-testid="stSidebar"] { display: none; }
 
 /* ── Filter Buttons ── */
 .filter-row {
-    padding: 0 60px 28px;
+    padding: 0 clamp(20px, 5vw, 60px) clamp(16px, 3vw, 28px);
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
@@ -557,6 +586,7 @@ section[data-testid="stSidebar"] { display: none; }
     cursor: pointer;
     letter-spacing: 0.5px;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 
 .filter-btn.active, .filter-btn:hover {
@@ -590,42 +620,10 @@ section[data-testid="stSidebar"] { display: none; }
 
 div[data-testid="stHorizontalBlock"] { gap: 12px; }
 
-/* ── Detail Panel ── */
-.detail-panel {
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(99,102,241,0.2);
-    border-radius: 20px;
-    padding: 36px;
-    margin: 0 60px 60px;
-}
-
-.detail-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: #FFFFFF;
-    margin: 0 0 8px 0;
-}
-
-.detail-section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    color: #6366F1;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 20px 0 8px 0;
-}
-
-.detail-text {
-    font-size: 14px;
-    color: #9CA3C8;
-    line-height: 1.75;
-}
-
 .divider-line {
     height: 1px;
     background: linear-gradient(90deg, rgba(99,102,241,0.3) 0%, transparent 100%);
-    margin: 40px 60px;
+    margin: clamp(24px, 5vw, 40px) clamp(20px, 5vw, 60px);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -675,12 +673,6 @@ def render_project_card(project):
     """
     return card_html
 
-
-# ── State ─────────────────────────────────────────────────────────────────────
-if "selected_project" not in st.session_state:
-    st.session_state.selected_project = None
-if "active_filter" not in st.session_state:
-    st.session_state.active_filter = "All"
 
 # ── Load Data ─────────────────────────────────────────────────────────────────
 profile = DEVELOPER
@@ -814,91 +806,25 @@ if search_term:
 
 # Project count line
 st.markdown(f"""
-<div style="padding: 0 60px 16px; font-family: 'Space Mono', monospace; font-size: 11px; color: #4B5563;">
+<div style="padding: 0 clamp(20px, 5vw, 60px) 16px; font-family: 'Space Mono', monospace; font-size: 11px; color: #4B5563;">
     SHOWING {len(filtered)} OF {len(projects)} PROJECTS
 </div>
 """, unsafe_allow_html=True)
 
 # Render project cards in 2-col grid
-st.markdown('<div style="padding: 0 60px 60px;">', unsafe_allow_html=True)
+st.markdown('<div style="padding: 0 clamp(20px, 5vw, 60px) clamp(40px, 6vw, 60px);">', unsafe_allow_html=True)
 
 cols = st.columns(2, gap="medium")
 for i, project in enumerate(filtered):
     with cols[i % 2]:
         st.markdown(render_project_card(project), unsafe_allow_html=True)
         st.markdown('<div style="height:12px;"></div>', unsafe_allow_html=True)
+        # Link to case study page with project ID
         if st.button(f"View Full Case Study ↗", key=f"btn_{project['id']}"):
-            if st.session_state.selected_project == project["id"]:
-                st.session_state.selected_project = None
-            else:
-                st.session_state.selected_project = project["id"]
+            st.session_state["project_id"] = project['id']
+            st.switch_page("pages/case_study.py")
 
 st.markdown('</div>', unsafe_allow_html=True)
-
-# ── DETAIL PANEL ─────────────────────────────────────────────────────────────
-if st.session_state.selected_project:
-    selected = next((p for p in projects if p["id"] == st.session_state.selected_project), None)
-    if selected:
-        accent = selected.get("accent_color", "#6366F1")
-        tech_html = "".join(tech_chip(t) for t in selected.get("technologies", []))
-        html_card = f"""
-
-        <div id="case-study-frame",style="padding: 32px;margin: 40px 60px;background: rgba(255,255,255,0.03);border: 1px solid rgba(99,102,241,0.15);border-radius: 24px;box-shadow: 0 10px 40px rgba(0,0,0,0.35);backdrop-filter: blur(12px);">
-            <div class="detail-panel" style="font-family: sans-serif;color: white;background: rgba(255,255,255,0.02);border: 1px solid rgba(255,255,255,0.06);border-radius: 20px;padding: 32px;">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
-                    <span style="font-size:48px;">{selected['icon']}</span>
-                    <div>
-                        <div style="font-family:'Space Mono',monospace;font-size:10px;color:{accent};letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">
-                            Case Study — {selected['domain']}
-                        </div>
-
-                        <div style="font-size:24px; font-weight:bold;">
-                            {selected['title']}
-                        </div>
-
-                        <div style="font-size:13px;color:#6B7280;font-family:'Space Mono',monospace;">
-                            {selected['subtitle']}
-                        </div>
-                    </div>
-                </div>
-                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px;">
-                    <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:16px; border:1px solid rgba(255,255,255,0.06);">
-                        <div style="font-family:'Space Mono',monospace; font-size:9px; color:#4B5563; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Complexity</div>
-                        <div style="font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:{accent};">{selected['complexity']}</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:16px; border:1px solid rgba(255,255,255,0.06);">
-                        <div style="font-family:'Space Mono',monospace; font-size:9px; color:#4B5563; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Client Type</div>
-                        <div style="font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:#FFFFFF;">{selected['client_type']}</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.02); border-radius:10px; padding:16px; border:1px solid rgba(255,255,255,0.06);">
-                        <div style="font-family:'Space Mono',monospace; font-size:9px; color:#4B5563; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Status</div>
-                        <div style="font-size:13px; color:#00C9A7; font-weight:600;">● {selected['status']}</div>
-                    </div>
-                </div>
-
-                <div style="font-weight:bold; margin-top:16px; font-size:14px; text-transform:uppercase; color:#6B7280; font-family:'Space Mono',monospace;">The Challenge</div>
-                <div style="margin-top:4px; font-size:15px; line-height:1.6; color:#E2E8F0;">{selected['challenge']}</div>
-
-                <div style="font-weight:bold; margin-top:16px; font-size:14px; text-transform:uppercase; color:#6B7280; font-family:'Space Mono',monospace;">The Solution</div>
-                <div style="margin-top:4px; font-size:15px; line-height:1.6; color:#E2E8F0;">{selected['solution']}</div>
-
-                <div style="font-weight:bold; margin-top:16px; font-size:14px; text-transform:uppercase; color:#6B7280; font-family:'Space Mono',monospace;">Outcomes & Impact</div>
-                <div style="margin-top:4px; font-size:15px; line-height:1.6; color:#00C9A7;">{selected['outcome']}</div>
-
-                <div style="font-weight:bold; margin-top:16px; font-size:14px; text-transform:uppercase; color:#6B7280; font-family:'Space Mono',monospace;">Technology Stack</div>
-                <div style="margin-top:8px;">{tech_html}</div>
-            </div>
-        </div>
-        <script>
-        const el = document.getElementById("case-study-frame");
-        if(el){{
-            el.scrollIntoView({{
-                behavior: "smooth"
-            }});
-        }}
-        </script>
-        """
-        st.iframe(html_card)
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 st.markdown(f"""
