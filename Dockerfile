@@ -24,6 +24,7 @@ COPY --from=builder /install /usr/local
 # Copy application source
 COPY app.py   ./
 COPY data.py  ./
+COPY pages ./pages/
 
 # Cloud Run injects $PORT at runtime (default 8080).
 # Streamlit reads STREAMLIT_SERVER_PORT from the environment.
