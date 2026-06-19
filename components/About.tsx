@@ -21,7 +21,7 @@ export default function About({ developer }: AboutProps) {
           <p className="font-space-mono text-sm text-accent-primary uppercase tracking-widest mb-4">
             02 — About Me
           </p>
-          <h2 className="text-5xl md:text-6xl font-bold font-syne text-gray-900">
+          <h2 className="text-5xl md:text-6xl font-bold font-poppins text-gray-900">
             The Developer <span className="text-accent-primary">Behind the Bots</span>
           </h2>
         </motion.div>
@@ -41,7 +41,7 @@ export default function About({ developer }: AboutProps) {
 
             {/* Skills */}
             <div>
-              <h3 className="text-xl font-bold font-syne text-gray-900 mb-4">Technology Arsenal</h3>
+              <h3 className="text-xl font-bold font-poppins text-gray-900 mb-4">Technology Arsenal</h3>
               <div className="flex flex-wrap gap-3">
                 {developer.skills.map((skill, i) => (
                   <motion.span
@@ -65,7 +65,7 @@ export default function About({ developer }: AboutProps) {
             transition={{ duration: 0.6 }}
             className="bg-white border border-gray-200 rounded-2xl p-8"
           >
-            <h3 className="text-xl font-bold font-syne text-accent-primary uppercase tracking-widest mb-8">
+            <h3 className="text-xl font-bold font-poppins text-accent-primary uppercase tracking-widest mb-8">
               Certifications
             </h3>
 
@@ -80,7 +80,7 @@ export default function About({ developer }: AboutProps) {
                 >
                   <div className="w-2 h-2 rounded-full bg-accent-primary flex-shrink-0 mt-2" />
                   <div>
-                    <p className="text-gray-800 font-syne font-semibold">{cert}</p>
+                    <p className="text-gray-800 font-poppins font-semibold">{cert}</p>
                   </div>
                 </motion.div>
               ))}

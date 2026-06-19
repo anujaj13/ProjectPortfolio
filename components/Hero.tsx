@@ -74,7 +74,7 @@ export default function Hero({ developer, onContactClick }: HeroProps) {
         {/* Name */}
         <motion.h1
           variants={itemVariants}
-          className="text-6xl md:text-7xl lg:text-8xl font-bold font-syne mb-6 leading-tight"
+          className="text-6xl md:text-7xl lg:text-8xl font-bold font-poppins mb-6 leading-relaxed"
         >
           <span className="text-gray-900">{developer.name.split(' ')[0]}</span>
           <br />
@@ -85,7 +85,7 @@ export default function Hero({ developer, onContactClick }: HeroProps) {
 
         {/* Title */}
         <motion.div variants={itemVariants} className="mb-6">
-          <p className="text-lg md:text-2xl text-accent-primary font-syne font-semibold">
+          <p className="text-lg md:text-2xl text-accent-primary font-poppins font-semibold">
             {developer.title} · {developer.experience_years}+ Years
           </p>
         </motion.div>
@@ -113,13 +113,13 @@ export default function Hero({ developer, onContactClick }: HeroProps) {
             href="https://github.com/anujaj13/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 bg-accent-primary text-white font-syne font-bold rounded-lg hover:shadow-lg hover:shadow-accent-primary/50 transition transform hover:scale-105"
+            className="px-8 py-4 bg-accent-primary text-white font-poppins font-bold rounded-lg hover:shadow-lg hover:shadow-accent-primary/50 transition transform hover:scale-105"
           >
             View My Work
           </a>
           <button
             onClick={onContactClick}
-            className="px-8 py-4 border border-accent-primary/50 text-accent-primary font-syne font-bold rounded-lg hover:bg-accent-primary/10 transition"
+            className="px-8 py-4 border border-accent-primary/50 text-accent-primary font-poppins font-bold rounded-lg hover:bg-accent-primary/10 transition"
           >
             Get in Touch
           </button>

@@ -29,7 +29,7 @@ export default function StatsBar({ stats }: StatsBarProps) {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="bg-white border border-gray-200 rounded-xl p-6 text-center hover:border-accent-primary/50 hover:bg-accent-primary/5 transition shadow-sm"
             >
-              <div className={`text-3xl md:text-4xl font-bold font-syne mb-2 ${stat.color}`}>
+              <div className={`text-3xl md:text-4xl font-bold font-poppins mb-2 ${stat.color}`}>
                 {stat.value}
               </div>
               <div className="font-space-mono text-xs text-gray-600 uppercase tracking-wider">

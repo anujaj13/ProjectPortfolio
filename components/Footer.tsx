@@ -13,7 +13,7 @@ export default function Footer() {
           className="flex flex-col md:flex-row justify-between items-center gap-8"
         >
           {/* Brand */}
-          <div className="text-2xl font-bold font-syne">
+          <div className="text-2xl font-bold font-poppins">
             <span className="text-gray-900">Anuj</span>
             <span className="text-accent-primary">.</span>
             <span className="text-gray-900">dev</span>

@@ -24,7 +24,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        syne: ['var(--font-syne)'],
+        poppins: ['var(--font-poppins)'],
         'space-mono': ['var(--font-space-mono)'],
       },
       animation: {

@@ -29,7 +29,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     try {
       // Using Formspree for email handling (free tier)
-      const response = await fetch('https://formspree.io/f/xyzpyqva', {
+      const response = await fetch('https://formspree.io/f/xnjyepqg', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -93,14 +93,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   className="text-center py-12"
                 >
                   <div className="text-5xl mb-4">✓</div>
-                  <h3 className="text-2xl font-bold font-syne text-accent-secondary mb-2">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold font-poppins text-accent-secondary mb-2">Message Sent!</h3>
                   <p className="text-gray-600">I'll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <>
                   {/* Header */}
                   <div className="mb-6">
-                    <h2 className="text-3xl font-bold font-syne mb-2 text-gray-900">Get in Touch</h2>
+                    <h2 className="text-3xl font-bold font-poppins mb-2 text-gray-900">Get in Touch</h2>
                     <p className="text-gray-600">Send me a message and I'll respond as soon as possible.</p>
                   </div>
 
@@ -167,14 +167,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       <button
                         type="button"
                         onClick={onClose}
-                        className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-syne font-semibold rounded-lg hover:bg-gray-50 transition"
+                        className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-poppins font-semibold rounded-lg hover:bg-gray-50 transition"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
                         disabled={loading}
-                        className="flex-1 px-6 py-3 bg-accent-primary text-white font-syne font-semibold rounded-lg hover:shadow-lg hover:shadow-accent-primary/50 transition disabled:opacity-50"
+                        className="flex-1 px-6 py-3 bg-accent-primary text-white font-poppins font-semibold rounded-lg hover:shadow-lg hover:shadow-accent-primary/50 transition disabled:opacity-50"
                       >
                         {loading ? 'Sending...' : 'Send Message'}
                       </button>

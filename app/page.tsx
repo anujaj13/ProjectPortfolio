@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <Header />
+      <Header onContactClick={() => setIsContactOpen(true)} />
       <Hero developer={DEVELOPER} onContactClick={() => setIsContactOpen(true)} />
       <StatsBar stats={DEVELOPER.stats} />
       <About developer={DEVELOPER} />

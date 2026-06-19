@@ -56,7 +56,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="font-space-mono text-xs text-accent-primary mb-2 uppercase tracking-wider">
               {project.domain.split('/')[0]}
             </div>
-            <h3 className="text-xl font-bold font-syne text-gray-900 group-hover:text-accent-primary transition">
+            <h3 className="text-xl font-bold font-poppins text-gray-900 group-hover:text-accent-primary transition">
               {project.title}
             </h3>
             <p className="text-sm text-gray-600 mt-1">{project.subtitle}</p>
@@ -109,7 +109,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
           {/* CTA */}
           <div className="px-6 py-4 bg-gray-50 border-t border-gray-100 group-hover:bg-accent-primary/10 transition">
-            <span className="text-sm font-syne font-semibold text-accent-primary group-hover:text-accent-primary transition">
+            <span className="text-sm font-poppins font-semibold text-accent-primary group-hover:text-accent-primary transition">
               View Case Study ↗
             </span>
           </div>

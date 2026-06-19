@@ -36,7 +36,7 @@ export default function CaseStudy({ params }: PageProps) {
         <Header />
         <div className="pt-32 pb-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold font-syne mb-4">Project Not Found</h1>
+            <h1 className="text-4xl font-bold font-poppins mb-4">Project Not Found</h1>
             <Link href="/" className="text-accent-primary hover:underline">
               Back to Portfolio
             </Link>
@@ -86,7 +86,7 @@ export default function CaseStudy({ params }: PageProps) {
                   ● {project.status.split('—')[1].trim()}
                 </span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold font-syne mb-3 text-gray-900">
+              <h1 className="text-5xl md:text-6xl font-bold font-poppins mb-3 text-gray-900">
                 {project.title}
               </h1>
               <p className="text-lg text-gray-600">{project.subtitle}</p>
@@ -107,7 +107,7 @@ export default function CaseStudy({ params }: PageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold font-syne mb-4 text-accent-primary">Challenge</h2>
+                <h2 className="text-3xl font-bold font-poppins mb-4 text-accent-primary">Challenge</h2>
                 <p className="text-gray-700 leading-relaxed text-lg">{project.challenge}</p>
               </motion.div>
 
@@ -117,7 +117,7 @@ export default function CaseStudy({ params }: PageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h2 className="text-3xl font-bold font-syne mb-4 text-accent-primary">Solution</h2>
+                <h2 className="text-3xl font-bold font-poppins mb-4 text-accent-primary">Solution</h2>
                 <p className="text-gray-700 leading-relaxed text-lg">{project.solution}</p>
               </motion.div>
 

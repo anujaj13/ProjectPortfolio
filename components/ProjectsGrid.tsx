@@ -46,7 +46,7 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
           <p className="font-space-mono text-sm text-accent-primary uppercase tracking-widest mb-4">
             03 — Featured Projects
           </p>
-          <h2 className="text-5xl md:text-6xl font-bold font-syne text-gray-900">
+          <h2 className="text-5xl md:text-6xl font-bold font-poppins text-gray-900">
             Automation <span className="text-accent-primary">Portfolio</span>
           </h2>
         </motion.div>
