@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-space-mono: 'Space Mono', monospace;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-light-50 text-gray-800 font-sans overflow-x-hidden;
+  background: linear-gradient(135deg, #F8FAFC 0%, #F0F4F8 50%, #F8FAFC 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(79, 70, 229, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 70, 229, 0.4);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(79, 70, 229, 0.15);
+  color: #111827;
+}
