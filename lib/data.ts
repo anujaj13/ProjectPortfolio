@@ -262,7 +262,7 @@ export const DEVELOPER: Developer = {
   name: "Anuj Kumar",
   title: "Senior RPA Developer",
   tagline: "Architecting Intelligent Automation — Transforming Enterprise Operations at Scale",
-  experience_years: 6,
+  experience_years: 5,
   certifications: [
     "Automation Anywhere Certified Advanced RPA Professional",
     "Automation Anywhere Certified Master RPA Professional",
@@ -274,7 +274,7 @@ export const DEVELOPER: Developer = {
     "Python", "SQL / T-SQL", "Power BI", "REST API", "ServiceNow",
     "Process Mining", "Agentic AI", "BPMN", "Git",
   ],
-  about: "Senior RPA Developer with 6+ years specialising in enterprise-scale intelligent automation across Finance, HR, Supply Chain, and Healthcare domains. Expert in Automation Anywhere A360 with a track record of delivering high-impact bots that handle millions of transactions annually. Passionate about pushing the boundaries of what's possible — from traditional rule-based RPA to next-generation Agentic Process Automation.",
+  about: "Senior RPA Developer with 5+ years specialising in enterprise-scale intelligent automation across Finance, HR, Supply Chain, and Healthcare domains. Expert in Automation Anywhere A360 with a track record of delivering high-impact bots that handle millions of transactions annually. Passionate about pushing the boundaries of what's possible — from traditional rule-based RPA to next-generation Agentic Process Automation.",
   stats: {
     projects_delivered: 9,
     bots_in_production: 24,
